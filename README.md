@@ -41,7 +41,7 @@ Specific results that trigger jokes:
 Other ways to trigger jokes:
 * Addition or subtraction of integers containing 8 or more digits that are only 0 or 1
 * An odd number minus one (if no other jokes is triggered by subtracting 1 from an odd number, this joke has a random chance of
-  occuring)
+  occurring)
 * Division by 0
 * Result is one of several integers that, written in hexadecimal, spell "hex words" such as 0xACE
 * Result is a power of 2 and result ≥ 2<sup>8</sup> = 256
