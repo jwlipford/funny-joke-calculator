@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Calculator</string>
+    <string name="minus">－</string> <!-- Unicode "Fullwidth Hyphen-Minus" -->
+    <string name="times">×</string> <!-- Unicode "Multiplication Sign" -->
+    <string name="divide">÷</string> <!-- Unicode "Division Sign" -->
+    <string name="root">ⁿ√</string> <!-- Unicode "Superscript Latin Small Letter N" and "Square Root" -->
+    <string name="log">logₙ</string> <!-- Contains Unicode "Latin Subscript Small Letter N" -->
+    <string name="mod">mod</string>
+</resources>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+    android:id="@+id/layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:stretchColumns="*">
+
+    <TableRow>
+
+        <EditText
+            android:id="@+id/number1"
+            android:inputType="numberDecimal|numberSigned"
+            android:gravity="end"
+            android:hint="n"
+            android:layout_weight="3"/>
+        <TextView
+            android:id="@+id/operator"
+            style="@style/operatorStyle"
+            android:layout_weight="1"/>
+        <EditText
+            android:id="@+id/number2"
+            android:inputType="numberDecimal|numberSigned"
+            android:gravity="start"
+            android:hint="p"
+            android:layout_weight="3"/>
+
+    </TableRow>
+
+    <TableRow>
+
+        <Button
+            android:id="@+id/button_plus"
+            style="@style/operatorStyle"
+            android:text="+"/>
+        <Button
+            android:id="@+id/button_minus"
+            style="@style/operatorStyle"
+            android:text="@string/minus"/>
+        <Button
+            android:id="@+id/button_times"
+            style="@style/operatorStyle"
+            android:text="@string/times"/>
+        <Button
+            android:id="@+id/button_divide"
+            style="@style/operatorStyle"
+            android:text="@string/divide"/>
+
+    </TableRow>
+
+    <TableRow>
+
+        <Button
+            android:id="@+id/button_power"
+            style="@style/operatorStyle"
+            android:text="^"/>
+        <Button
+            android:id="@+id/button_root"
+            style="@style/operatorStyle"
+            android:text="@string/root"/>
+        <Button
+            android:id="@+id/button_log"
+            style="@style/operatorStyle"
+            android:text="@string/log"/>
+        <Button
+            android:id="@+id/button_mod"
+            style="@style/operatorStyle"
+            android:text="@string/mod"/>
+
+    </TableRow>
+
+</TableLayout>

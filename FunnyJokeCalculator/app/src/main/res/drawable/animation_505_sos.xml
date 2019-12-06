@@ -1,0 +1,16 @@
+<animation-list
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/animation_505_SOS"
+    android:oneshot="true">
+    
+    <item android:drawable="@drawable/sos_505_1_9th"  android:duration="150"/>
+    <item android:drawable="@drawable/sos_505_2_9ths" android:duration="150"/>
+    <item android:drawable="@drawable/sos_505_3_9ths" android:duration="150"/>
+    <item android:drawable="@drawable/sos_505_4_9ths" android:duration="450"/>
+    <item android:drawable="@drawable/sos_505_5_9ths" android:duration="450"/>
+    <item android:drawable="@drawable/sos_505_6_9ths" android:duration="450"/>
+    <item android:drawable="@drawable/sos_505_7_9ths" android:duration="150"/>
+    <item android:drawable="@drawable/sos_505_8_9ths" android:duration="150"/>
+    <item android:drawable="@drawable/sos_505_9_9ths" android:duration="150"/>
+   
+ </animation-list>
