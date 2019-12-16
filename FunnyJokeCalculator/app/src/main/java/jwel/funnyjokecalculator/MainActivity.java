@@ -177,9 +177,10 @@ public class MainActivity extends AppCompatActivity
             this.rsltStr = "= " + this.rsltStr;
     }
     
-    public void setOutput( View view )
+    public void setOutput( View view, boolean useScrollView )
     // Displays view parameter as output under the rows of Buttons. Also
-    // clears any animations and stops any running audio files.
+    // clears any animations, stops any running audio files, and puts output
+    // in a ScrollView if useScrollView==true.
     {
         if( this.output != null )
         {
@@ -188,21 +189,45 @@ public class MainActivity extends AppCompatActivity
         }
         if( this.mediaPlayer != null )
             this.mediaPlayer.stop();
-        this.output = view;
+        if( !useScrollView )
+            this.output = view;
+        else
+        {
+            this.output = new ScrollView( this );
+            ((ScrollView)this.output).addView( view );
+        }
         this.layout.addView( this.output );
     }
     
-    public void setOutputAsTextView( CharSequence text )
+    public void setOutputAsTextView( CharSequence text, boolean useScrollView )
     // Displays text parameter in a normal TextView, using outputTextStyle style
     {
         TextView output = new TextView( this.outputText_contentThemeWrapper );
         output.setText( text );
-        this.setOutput( output );
+        this.setOutput( output, useScrollView );
+    }
+    
+    public void setOutput( View view )
+    {
+        setOutput( view, false );
+    }
+    
+    public void setOutputAsTextView( CharSequence text )
+    {
+        setOutputAsTextView( text, false );
     }
     
     public void setMediaPlayer( MediaPlayer mediaPlayer )
+    // Use this method instead of just creating a MediaPlayer in the Jokes
+    // class so setOutput will stop mediaPlayer whenever the output changes.
     {
         this.mediaPlayer = mediaPlayer;
+    }
+    
+    public void startMediaPlayer()
+    {
+        if( this.mediaPlayer != null )
+            this.mediaPlayer.start();
     }
     
     

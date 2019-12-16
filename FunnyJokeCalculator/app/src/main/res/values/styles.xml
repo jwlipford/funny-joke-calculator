@@ -10,8 +10,8 @@
     <!-- Style for an operator. Used in all 8 Buttons and middle TextView on top row -->
     <style name="operatorStyle">
         <item name="android:textSize">18sp</item>
-        <item name="android:gravity">center</item>
         <item name="android:textAllCaps">false</item>
+        <item name="android:gravity">center</item>
     </style>
 
     <!-- Style normally used for output. Used to set style programmatically; never used in activity_main.xml. -->

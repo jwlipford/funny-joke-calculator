@@ -17,18 +17,19 @@ This app supports 8 binary operations:
 
 Specific operations that trigger jokes:
 * 2 + 2
-* 9 + 10
-* 4 - 1
 * 2 * 2
-* 6 * 9
 * 2 ^ 2
-* 2 root of -1
+* 9 + 10
+* 6 * 9
+* 4 - 1
 * 2 root of 4
+* 2 root of -1
+* -1 ^ 0.5
 
 Specific results that trigger jokes:
-* π, 2π, and 3π (result close to one of these values)
-* Euler's Number (result close to this value)
-* The Golden Ratio (result close to this value)
+* π, 2π, and 3π (results close to these values)
+* Euler's Number (results close to this value)
+* The Golden Ratio (results close to this value)
 * 13
 * 69
 * 250
@@ -36,7 +37,7 @@ Specific results that trigger jokes:
 * 505
 * 666
 * 1134
-* 1 mole = 6.022×10<sup>23</sup> (result close to this value)
+* 1 mole = 6.022×10<sup>23</sup> (results close to this value)
 
 Other ways to trigger jokes:
 * Addition or subtraction of integers containing 8 or more digits that are only 0 or 1

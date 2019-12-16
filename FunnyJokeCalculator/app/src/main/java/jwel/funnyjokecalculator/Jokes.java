@@ -41,8 +41,7 @@ public class Jokes
     public void lookForSubtractionJokes()
     {
         if( main.numbersAre( 4, 1 ) ) // Big Shaq
-            main.setOutputAsTextView(
-                "2 + 2 = 4,     \n     4 − 1 = 3\nQuick math" );
+            execute4Minus1Joke();
         else if( suspiciouslyBinary( main.getNum1Str() ) && suspiciouslyBinary( main.getNum2Str() ) )
             executeBinaryJoke( true );
         else if( (main.getNum2Val() == 1) && (main.getNum1Val() % 2 == 1) && (random.nextFloat() < 0.25) )
@@ -58,8 +57,7 @@ public class Jokes
         if( main.numbersAre( 2, 2 ) )
             main.setOutputAsTextView( "to × too = for" );
         if( main.numbersAre( 6, 9 ) )
-            // create another method with LinearLayout
-            main.setOutputAsTextView( "= 42\n(according to the Deep Thought supercomputer)" );
+            this.execute6Times9Joke();
     }
     
     public void lookForDivisionJokes()
@@ -72,6 +70,9 @@ public class Jokes
     {
         if( main.numbersAre( 2, 2 ) )
             main.setOutputAsTextView( "2^2 = 2×2 = 2+2 = 4\nIsn't that cool?" );
+        if( main.numbersAre( -1, 0.5 ) )
+            main.setOutputAsTextView( Html.fromHtml( "<i>i</i> am the answer", 0 ) );
+            // "i am the answer", with 'i' italicized
     }
     
     public void lookForRootJokes()
@@ -93,8 +94,10 @@ public class Jokes
         // Do nothing in this version of the program
     }
     
-    private static final double MOLE_MIN = 6.022 * Math.pow( 10, 23 );
+    // Mole = 6.022*10^23. (Access quickly with 20.9456^18.)
+    private static final double MOLE_MIN = 6.021 * Math.pow( 10, 23 );
     private static final double MOLE_MAX = 6.023 * Math.pow( 10, 23 );
+    
     private static final int[] HEX_WORDS // Must be sorted here for binary search
         = new int[] { 0xACE, 0xADD, 0xBAD, 0xBED, 0xBEE, 0xBABE, 0xBEEF,
                       0xCAFE, 0xDEAD, 0xFACE, 0xDECAF, 0xCAFEBABE, 0xDECAFBAD };
@@ -151,9 +154,7 @@ public class Jokes
         }
         else if( result == 666 )
         {
-            ImageView output = new ImageView( main );
-            output.setImageResource( R.drawable.nero );
-            main.setOutput( output );
+            this.main.finish(); // Close Activity
         }
         else if( result == 1134 )
         {
@@ -166,7 +167,8 @@ public class Jokes
             main.setOutput( output );
         }
         else if( result == (int)result && Arrays.binarySearch( HEX_WORDS, (int)result ) >= 0 )
-        // If HEX_WORDS contains result
+        // If HEX_WORDS contains result, then execute this joke.
+        // (One example to test: 0xACE=2766)
         {
             main.setOutputAsTextView(
                 "= " + Integer.toHexString( (int)result ).toUpperCase() + "ₕₑₓ" );
@@ -209,12 +211,36 @@ public class Jokes
         output.setOrientation( LinearLayout.VERTICAL );
         output.addView( equals21 );
         output.addView( jk );
-        
-        MediaPlayer twentyone = MediaPlayer.create( main, R.raw.twentyone );
-        
-        main.setOutput( output );
-        main.setMediaPlayer( twentyone );
-        twentyone.start();
+    
+        main.setOutput( output, true );
+        main.setMediaPlayer( MediaPlayer.create( main, R.raw.twentyone ) );
+        main.startMediaPlayer();
+    }
+    
+    private void execute4Minus1Joke()
+    {
+        main.setOutputAsTextView(
+            "2 + 2 = 4,     \n     4 − 1 = 3\nQuick math", true );
+        main.setMediaPlayer( MediaPlayer.create( main, R.raw.quick_math ) );
+        main.startMediaPlayer();
+    }
+    
+    private void execute6Times9Joke()
+    {
+        TextView equals42 = new TextView( main.outputText_contentThemeWrapper );
+        equals42.setTextSize( TypedValue.COMPLEX_UNIT_SP, 90 );
+        equals42.setText( "= 42" );
+    
+        TextView adtsc = new TextView( main.outputText_contentThemeWrapper );
+        adtsc.setTextSize( TypedValue.COMPLEX_UNIT_SP, 20 );
+        adtsc.setText( "(according to the Deep Thought supercomputer)" );
+    
+        LinearLayout output = new LinearLayout( main );
+        output.setOrientation( LinearLayout.VERTICAL );
+        output.addView( equals42 );
+        output.addView( adtsc );
+    
+        main.setOutput( output, true );
     }
     
     private static final String[] outputsFor13 = new String[]
@@ -225,7 +251,7 @@ public class Jokes
             "= Dₕₑₓ",
             "is the 6th prime number",
             "is the 7th Fibonacci number",
-            "Ahhhhhhhhhhhhhhh!",
+            "Ahhhhhhhhhhhhh!",
             "Please stop calculating this number, it's scary!"
         };
     
@@ -262,7 +288,7 @@ public class Jokes
                 for( int i = 0; i < stillAppendTimes; ++i )
                     outputText.append( "still " );
                 outputText.append( "NOPE" );
-                main.setOutputAsTextView( outputText );
+                main.setOutputAsTextView( outputText, true );
         }
     }
     
@@ -271,13 +297,11 @@ public class Jokes
         ImageView weed = new ImageView( main );
         weed.setImageResource( R.drawable.weed );
         weed.setForegroundGravity( Gravity.CENTER );
-        weed.setScaleX( .75f );
-        weed.setScaleY( .75f );
         
         RotateAnimation ra = new RotateAnimation(
             -3, 723, // angles
             Animation.RELATIVE_TO_SELF, 0.5f, // pivot x
-            Animation.RELATIVE_TO_SELF, 0.79f  // pivot y
+            Animation.RELATIVE_TO_SELF, 0.79f // pivot y
         );
         ra.setRepeatMode( Animation.REVERSE );
         ra.setRepeatCount( Animation.INFINITE );
@@ -287,12 +311,10 @@ public class Jokes
         AnimationSet set = new AnimationSet( true );
         set.addAnimation( ra );
         
-        MediaPlayer swed = MediaPlayer.create( main, R.raw.swed );
-        
         main.setOutput( weed );
-        main.setMediaPlayer( swed );
         weed.startAnimation( set );
-        swed.start();
+        main.setMediaPlayer( MediaPlayer.create( main, R.raw.swed ) );
+        main.startMediaPlayer();
     }
     
     private static boolean suspiciouslyBinary( String s ) // Improve later?
@@ -324,7 +346,8 @@ public class Jokes
         else
             outputText += MainActivity.formatForOutput( main.getRsltVal() );
         outputText += ")";
-        main.setOutputAsTextView( outputText );
+        
+        main.setOutputAsTextView( outputText, true );
     }
     
     private void executeDivideBy0Joke()
@@ -340,7 +363,7 @@ public class Jokes
                 ". If you divide your " + foods + " into 0 equal slices, how big is each slice?\n" +
                 "Can't answer, can you? That's because your question is DUMB."
         );
-        main.setOutput( output );
+        main.setOutput( output, true );
     }
     
     private void executeHelloJoke()
@@ -440,15 +463,15 @@ public class Jokes
             "Tap <a href='https://youtu.be/dQw4w9WgXcQ'>here</a> " +
             "for a super-special, ultra-rare joke!", 0 ) );
         output.setMovementMethod( LinkMovementMethod.getInstance());
-        main.setOutput( output );
+        
+        main.setOutput( output, true );
     }
 }
 
 
 /*
 Possible future improvements:
-    Fix width of operator on first line
-    Make 42 bigger in 6*9=42
+    <A positive number> * 0.15 or 1.15  =>  "Tipping the waiter, I see. I think they deserve <some big number> dollars!"
     Expand list of Hex words
     Improve suspiciouslyBinary method?
     Refine binary joke layout?

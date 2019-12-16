@@ -49,11 +49,6 @@
             android:id="@+id/button_divide"
             style="@style/operatorStyle"
             android:text="@string/divide"/>
-
-    </TableRow>
-
-    <TableRow>
-
         <Button
             android:id="@+id/button_power"
             style="@style/operatorStyle"
