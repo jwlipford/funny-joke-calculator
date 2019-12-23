@@ -98,9 +98,14 @@ public class Jokes
     private static final double MOLE_MIN = 6.021 * Math.pow( 10, 23 );
     private static final double MOLE_MAX = 6.023 * Math.pow( 10, 23 );
     
-    private static final int[] HEX_WORDS // Must be sorted here for binary search
-        = new int[] { 0xACE, 0xADD, 0xBAD, 0xBED, 0xBEE, 0xBABE, 0xBEEF,
-                      0xCAFE, 0xDEAD, 0xFACE, 0xDECAF, 0xCAFEBABE, 0xDECAFBAD };
+    private static final int[] HEX_WORDS = new int[]
+    // Array must be pre-sorted for use in binary search.
+    // 0xCAFEBABE and 0xDECAFBAD are negative (‭‭-889275714‬ and -557122643‬,
+    // respectively), so they come first.
+    {
+        0xCAFEBABE, 0xDECAFBAD, 0xACE, 0xADD, 0xBAD, 0xBED, 0xBEE, 0xBABE,
+        0xBEEF, 0xCAFE, 0xDEAD, 0xFACE, 0xDECAF
+    };
     
     public void lookForResultJokes()
     {
@@ -179,10 +184,10 @@ public class Jokes
             main.setOutputAsTextView(
                 main.getRsltStr() + "\nOh look, a power of 2! Yay!" );
         }
-        else if( random.nextFloat() < 1/12f )
-        // With a 1/12 chance, output another expression equal to the result
+        else if( !Double.isNaN( result ) && random.nextFloat() < 1/12f )
+        // If result is not NaN, then with a 1/12 chance, output another
+        // expression equal to the result
         {
-            // put troll face?
             main.setOutputAsTextView( this.randomlyComplicate( result ) + "  :)" );
         }
         else if( random.nextFloat() < 1/50f )
@@ -474,7 +479,6 @@ Possible future improvements:
     <A positive number> * 0.15 or 1.15  =>  "Tipping the waiter, I see. I think they deserve <some big number> dollars!"
     Expand list of Hex words
     Improve suspiciouslyBinary method?
-    Refine binary joke layout?
     999 joke?
     16 shots joke?
     Picture of a log for natural log?
